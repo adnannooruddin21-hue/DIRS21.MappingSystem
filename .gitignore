@@ -1,0 +1,25 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+
+# User files
+*.suo
+*.user
+*.rsuser
+
+# Logs
+*.log
+
+# Test results
+TestResults/
+
+# OS
+.DS_Store
+Thumbs.db
