@@ -19,15 +19,6 @@ public class MapHandler
     }
 
     /// <summary>
-    /// Legacy method for dynamic type mapping (kept for backward compatibility)
-    /// </summary>
-    public object Map(object source, Type sourceType, Type targetType)
-    {
-        var mapper = _registry.Resolve(sourceType, targetType);
-        return mapper.Map(source);
-    }
-
-    /// <summary>
     /// Map a collection of objects
     /// </summary>
     public List<TTarget> MapCollection<TSource, TTarget>(IEnumerable<TSource> sources)

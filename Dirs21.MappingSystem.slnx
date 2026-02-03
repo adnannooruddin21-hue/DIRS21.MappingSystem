@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Dirs21.Mapping.Demo/Dirs21.Mapping.Demo.csproj" />
+  <Project Path="Dirs21.Mapping/Dirs21.Mapping.csproj" />
+</Solution>
