@@ -163,6 +163,15 @@ Supports both forward (Dirs21 → Partner) and reverse (Partner → Dirs21) mapp
 
 ---
 
+## Technical Specifications
+
+- **Framework:** .NET 10.0
+- **Language:** C# 13
+- **Dependencies:** None (zero external packages)
+- **Test Framework:** xUnit
+
+---
+
 ## Running the Project
 
 ### Build
