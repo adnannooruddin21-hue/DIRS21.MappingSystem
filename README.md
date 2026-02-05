@@ -80,12 +80,15 @@ Dirs21.MappingSystem/
 │   │   └── IPartnerRules.cs             # Partner rules interface
 │   ├── Models/                          # Data models for all formats
 │   │   ├── Dirs21/Reservation.cs        # Internal Dirs21 format
-│   │   ├── Google/Reservation.cs        # Google partner format
+│   │   └── Google/Reservation.cs        # Google partner format
 │   ├── Mappers/                         # Concrete mapper implementations
 │   │   ├── Dirs21ToGoogleReservationMapper.cs
-│   │   ├── GoogleToDirs21ReservationMapper.cs
+│   │   └── GoogleToDirs21ReservationMapper.cs
 │   └── PartnerRules/                    # Partner-specific business rules
-│       ├── GoogleReservationRules.cs
+│       └── Google/                      # Google-specific rules & enums
+│           ├── GoogleReservationRules.cs        # Business rule validator
+│           ├── GoogleReservationErrors.cs       # Enum for validation errors
+│           └── GoogleReservationErrorsExtension.cs  # Enum → message extension
 ├── Dirs21.Mapping.Demo/                 # Demo application
 │   └── Program.cs                       # Demonstrates all features
 ├── Dirs21.Mapping.Tests/                # Unit tests
@@ -93,8 +96,8 @@ Dirs21.MappingSystem/
 │   ├── MapHandlerTests.cs
 │   ├── PartnerRulesTests.cs
 │   ├── AutoRegistrationTests.cs
-│   ├── ExtensibilityTests.cs
-└── README.md                      # Comprehensive technical documentation
+│   └── ExtensibilityTests.cs
+└── README.md                            # Comprehensive technical documentation
 ```
 
 ---
@@ -128,7 +131,7 @@ Create the reverse mapper for bi-directional mapping.
 ### Step 4: Create Partner Rules
 Define partner-specific validation and transformation rules.
 
-**File:** `PartnerRules/ExpediaReservationRules.cs`
+**File:** `PartnerRules/Expedia/ExpediaReservationRules.cs`
 - Implement `IPartnerRules<Expedia.Reservation>`
 - **Apply()**: Apply transformations (add prefixes, format data, etc.)
 - **Validate()**: Validate against partner-specific requirements

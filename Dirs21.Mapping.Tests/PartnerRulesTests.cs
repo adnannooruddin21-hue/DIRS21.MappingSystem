@@ -1,4 +1,5 @@
 using Dirs21.Mapping.PartnerRules;
+using Dirs21.MappingSystem.PartnerRules.Google;
 
 namespace Dirs21.Mapping.Tests;
 
@@ -126,7 +127,49 @@ public class PartnerRulesTests
 
         // Assert
         Assert.False(isValid);
-        Assert.Contains(errors, e => e.Contains("after"));
+        Assert.Contains(GoogleReservationError.DepartureBeforeArrival.ToMessage(), errors);
+    }
+
+    [Fact]
+    public void GoogleRules_Should_Fail_Validation_For_Missing_BookingId()
+    {
+        // Arrange
+        var rules = new GoogleReservationRules();
+        var reservation = new Google.Reservation
+        {
+            BookingId = "",
+             ArrivalDate = DateTime.Today,
+            DepartureDate = DateTime.Today.AddDays(2),
+            GuestFullName = "Test User"
+        };
+
+        // Act
+        var isValid = rules.Validate(reservation, out var errors);
+
+        // Assert
+        Assert.False(isValid);
+        Assert.Contains(GoogleReservationError.BookingIdRequired.ToMessage(), errors);
+    }
+
+    [Fact]
+    public void GoogleRules_Should_Fail_Validation_For_Missing_GuestName()
+    {
+        // Arrange
+        var rules = new GoogleReservationRules();
+        var reservation = new Google.Reservation
+        {
+            BookingId = "G-123",
+            ArrivalDate = DateTime.Today,
+            DepartureDate = DateTime.Today.AddDays(2),
+            GuestFullName = ""
+        };
+
+        // Act
+        var isValid = rules.Validate(reservation, out var errors);
+
+        // Assert
+        Assert.False(isValid);
+        Assert.Contains(GoogleReservationError.GuestFullNameRequired.ToMessage(), errors);
     }
 
     [Fact]
